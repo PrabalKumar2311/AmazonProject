@@ -1,5 +1,6 @@
-import { cart } from "../data/cart.js";
+import { cart, deleteFromCart} from "../data/cart.js";
 import { products } from '../scripts/products.js'
+
 
 
 let cartSummaryHTML = ''
@@ -7,7 +8,6 @@ let cartSummaryHTML = ''
 cart.forEach((cartItem) => {
 
   
-
   const productId = cartItem.productId;
 
   let matchingProduct;
@@ -17,7 +17,7 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   });
-
+  console.log("matchingProduct");
   console.log(matchingProduct);
   
   cartSummaryHTML += 
@@ -46,7 +46,9 @@ cart.forEach((cartItem) => {
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary js-delete-btn"
+                  data-product-id="${matchingProduct.id}"
+                  >
                     Delete
                   </span>
                 </div>
@@ -59,7 +61,7 @@ cart.forEach((cartItem) => {
                 <div class="delivery-option">
                   <input type="radio" checked
                     class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id.id}">
+                    name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
                       Tuesday, June 21
@@ -72,7 +74,7 @@ cart.forEach((cartItem) => {
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id.id}">
+                    name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
                       Wednesday, June 15
@@ -102,4 +104,14 @@ cart.forEach((cartItem) => {
 
   document.querySelector('.order-summary').innerHTML = cartSummaryHTML;
   console.log(cartSummaryHTML);
+
+  document.querySelectorAll('.js-delete-btn')
+  .forEach((link) => {
+    link.addEventListener('click', () =>{
+
+      const productId = link.dataset.productId;
+
+      console.log(productId);
+    })
+  })
 });
