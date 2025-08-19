@@ -2,13 +2,17 @@ import { cart, deleteFromCart} from "../data/cart.js";
 import { products } from '../scripts/products.js'
 
 
+const dateToday = datjs();
+const deliveryDate = dateToday.add(7,'days');
+deliveryDate.format('ddd, MMMM D');
+
 
 let cartSummaryHTML = ''
 
 cart.forEach((cartItem) => {
 
   
-  const productId = cartItem.productId;
+  const productId = cartItem.productId; 
 
   let matchingProduct;
  
