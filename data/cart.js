@@ -61,9 +61,9 @@ export function deleteFromCart(productId){
 export function updateDeliveryOption(productId, deliveryOptionId){
   let matchingItem;
 
-    cart.forEach((item) => {
-      if(productId === item.productId){
-        matchingItem = item;
+    cart.forEach((cartItem) => {
+      if(productId === cartItem.productId){
+        matchingItem = cartItem;
       }
     });
 

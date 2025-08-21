@@ -6,6 +6,8 @@ const dateToday = dayjs();
 const deliveryDate = dateToday.add(7, "days");
 console.log(deliveryDate.format("ddd, MMMM D"));
 
+function renderOrderSummary() {
+
 let cartSummaryHTML = "";
 
 cart.forEach((cartItem) => {
@@ -100,7 +102,7 @@ cart.forEach((cartItem) => {
       deliveryOptionHTML += `
       <div class="delivery-option js-delivery-option"
       data-product-id="${matchingProduct.id}"
-      data-delivery-option="${deliveryOption.id}">
+      data-delivery-option-id="${deliveryOption.id}"> 
         <input type="radio"
         ${isChecked ? 'checked' : ''}
           class="delivery-option-input"
@@ -144,7 +146,12 @@ cart.forEach((cartItem) => {
 document.querySelectorAll('.js-delivery-option')
 .forEach((element) => {
   element.addEventListener('click', () => {
-    const {productId, deliveryOptionId} = element.dataset
+    const {productId, deliveryOptionId} = element.dataset;
     updateDeliveryOption(productId, deliveryOptionId);
+    renderOrderSummary();
   });
 })
+
+}
+
+renderOrderSummary();
