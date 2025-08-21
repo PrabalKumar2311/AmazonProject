@@ -22,7 +22,7 @@ export function addToCart(productId){
       if(productId === item.productId){
         matchingItem = item;
       }
-    })
+    });
     
     if(matchingItem){ 
       matchingItem.quantity++;
@@ -58,4 +58,15 @@ export function deleteFromCart(productId){
 }
 
 
+export function updateDeliveryOption(productId, deliveryOptionId){
+  let matchingItem;
 
+    cart.forEach((item) => {
+      if(productId === item.productId){
+        matchingItem = item;
+      }
+    });
+
+    matchingItem.deliveryOptionId = deliveryOptionId;
+    saveToStorage(); 
+}
