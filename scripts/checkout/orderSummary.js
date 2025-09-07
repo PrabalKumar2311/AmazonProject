@@ -6,7 +6,6 @@ const dateToday = dayjs();
 const deliveryDate = dateToday.add(7, "days");
 console.log(deliveryDate.format("ddd, MMMM D"));
 
-
 export function renderOrderSummary() {
 
 let cartSummaryHTML = "";
